@@ -20,10 +20,6 @@ public class Cirby : MonoBehaviour
         died = false; 
     }
 
-    /*void OnClickStart()
-    {
-
-    }*/
 
     void OnTriggerEnter2D (Collider2D c)
     {
