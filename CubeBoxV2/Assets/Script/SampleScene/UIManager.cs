@@ -1,0 +1,160 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class UIManager : MonoBehaviour
+{
+    public GameObject hudPanel;
+    public GameObject resultPanel;
+    public GameObject PausePanel;
+    public GameObject iconscore;
+    public SampleScene scene;
+    public BonusScene Bscene;
+    //HUD
+    public Text scoretext;
+    static int score = 0;
+
+    //Result
+    public Text currentScoreText;
+    public Text bestScoreText;
+    public Text pauseScore;
+
+    //Face detect
+    public string code;
+    public InputField inputField;
+    //public Text popup;
+
+    //public Box box;
+    public Fryerz fry;
+    public float speed;
+    //pauseGame
+    public static bool GameisPaused = false;
+    public GameObject pauseMenuUI;
+
+
+    public void start()
+    {
+        scoretext.text = score.ToString();
+    }
+    
+    public void OnSubmit()
+     {
+         code = inputField.text;
+         Debug.Log(code);
+
+         if (code == "1")
+         {
+            scene.LoadScene();
+            
+           
+            Resume();
+            
+        }
+         else if (code == "0")
+         {
+            
+            Resume();
+            
+        }
+    }
+
+    public void Pause()
+    {
+        pause();
+        iconscore.SetActive(false);
+        PausePanel.SetActive(true);
+        pauseScore.text = score.ToString();
+
+    }
+    
+    public void resume()
+    {
+        Resume();
+        iconscore.SetActive(true);
+        PausePanel.SetActive(false);
+
+    }
+
+   void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameisPaused = false;
+    }
+
+    void pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameisPaused = true;
+    }
+
+
+    public void IncreaseScore()
+    {
+
+        score++;
+        scoretext.text = score.ToString();
+        
+
+        if (score == 2)
+        {
+            pause();
+            OnSubmit();
+            
+        }
+    }
+
+    public void plusScore()
+    {
+        
+        score++;
+        scoretext.text = score.ToString();
+        if(score == 6)
+        {
+            Bscene.LoadScene();
+
+        }
+        
+        
+    }
+
+    public void OneClick()
+    {
+        Resume();
+   
+    }
+
+    public void ShowResult()
+    {
+        
+        hudPanel.SetActive(false);
+        resultPanel.SetActive(true);
+
+        currentScoreText.text = score.ToString();
+
+        int bestScore = PlayerPrefs.GetInt("BestScore");
+        bestScoreText.text = bestScore.ToString();
+        if(score>bestScore)
+        {
+            PlayerPrefs.SetInt("BestScore", score);
+            
+        }
+    }
+    public void OnReplayClick()
+    {
+        score = 0;
+        int level = Application.loadedLevel;
+        Application.LoadLevel(level);
+    }
+
+    void update()
+    {
+        scoretext.text = score.ToString();
+    }
+}
