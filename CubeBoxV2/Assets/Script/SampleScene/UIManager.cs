@@ -25,8 +25,8 @@ public class UIManager : MonoBehaviour
     public Text pauseScore;
 
     //Face detect
-    public string code;
-    public InputField inputField;
+    //public string code;
+    //public InputField inputField;
     //public Text popup;
 
     //public Box box;
@@ -42,26 +42,7 @@ public class UIManager : MonoBehaviour
         scoretext.text = score.ToString();
     }
     
-    public void OnSubmit()
-     {
-         code = inputField.text;
-         Debug.Log(code);
-
-         if (code == "1")
-         {
-            scene.LoadScene();
-            
-           
-            Resume();
-            
-        }
-         else if (code == "0")
-         {
-            
-            Resume();
-            
-        }
-    }
+    
 
     public void Pause()
     {
@@ -82,14 +63,14 @@ public class UIManager : MonoBehaviour
 
    void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 1f;
         GameisPaused = false;
     }
 
     void pause()
     {
-        pauseMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 0f;
         GameisPaused = true;
     }
@@ -102,11 +83,11 @@ public class UIManager : MonoBehaviour
         scoretext.text = score.ToString();
         
 
-        if (score == 2)
+        if (score == 20)
         {
-            pause();
-            OnSubmit();
             
+            scene.LoadScene();
+
         }
     }
 
@@ -115,7 +96,7 @@ public class UIManager : MonoBehaviour
         
         score++;
         scoretext.text = score.ToString();
-        if(score == 6)
+        if(score == 10)
         {
             Bscene.LoadScene();
 
@@ -135,7 +116,7 @@ public class UIManager : MonoBehaviour
         
         hudPanel.SetActive(false);
         resultPanel.SetActive(true);
-
+        pauseMenuUI.SetActive(false);
         currentScoreText.text = score.ToString();
 
         int bestScore = PlayerPrefs.GetInt("BestScore");

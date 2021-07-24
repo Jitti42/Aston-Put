@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Audio;
+
 
 
 public class Cirby : MonoBehaviour
@@ -11,11 +13,17 @@ public class Cirby : MonoBehaviour
     public Vector2 velocity;
     public UIManager uiManager;
     private bool died;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private AudioSource Backgroundsound;
     public AudioClip coin;
-
+    
     public AudioClip die;
+    AudioSource _audio;
+    public float sentivity = 100;
+    public float loudness = 0;
+    //public bool usemicrophone;
+    //public AudioClip audioClip;
+    //public string selectDevice;
     void Start()
     {
         
@@ -23,6 +31,14 @@ public class Cirby : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D> ();
         audioSource = GetComponent <AudioSource>();
         uiManager.start();
+        _audio = GetComponent<AudioSource>();
+        _audio.clip = Microphone.Start(null, true, 10, 44100);
+        _audio.loop = true;
+        _audio.mute = false;
+        while (!(Microphone.GetPosition(null) > 0)) { }
+
+        _audio.Play();
+
         died = false; 
     }
 
@@ -31,7 +47,7 @@ public class Cirby : MonoBehaviour
         if (died)
             return;
         audioSource.PlayOneShot(coin);
-        
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 2);
         uiManager.IncreaseScore();
         
     }
@@ -39,17 +55,37 @@ public class Cirby : MonoBehaviour
     void Update()
     {
 
-        bool keyDown = Input.GetKeyDown(KeyCode.Space);
-       
-        bool mouseDown = Input.GetMouseButtonDown(0);
+        //bool keyDown = Input.GetKeyDown(KeyCode.Space);
 
-        if (keyDown || mouseDown && false == died)
+        //bool mouseDown = Input.GetMouseButtonDown(0);
+        loudness = GetAveragedVolume() * sentivity;
+        if(loudness > 0.1 )
+        {
+            //rigidbody2D.velocity = velocity;
+            //animator.SetTrigger("IsFlap");
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 2);
+            animator.SetTrigger("IsFlap");
+        }
+
+        /*if (usemicrophone && false == died)
         {
             rigidbody2D.velocity = velocity;
             animator.SetTrigger("IsFlap");
             
-        }
+        }*/
        
+    }
+
+    float GetAveragedVolume()
+    {
+        float[] data = new float[256];
+        float a = 0;
+        _audio.GetOutputData(data, 0);
+        foreach(float s in data)
+        {
+            a += Mathf.Abs(s);
+        }
+        return a / 256;
     }
 
     public void OnCollisionEnter2D (Collision2D c)
