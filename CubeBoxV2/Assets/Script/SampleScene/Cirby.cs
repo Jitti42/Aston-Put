@@ -21,9 +21,7 @@ public class Cirby : MonoBehaviour
     AudioSource _audio;
     public float sentivity = 100;
     public float loudness = 0;
-    //public bool usemicrophone;
-    //public AudioClip audioClip;
-    //public string selectDevice;
+    
     void Start()
     {
         

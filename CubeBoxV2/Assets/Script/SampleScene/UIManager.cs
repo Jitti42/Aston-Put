@@ -83,11 +83,15 @@ public class UIManager : MonoBehaviour
         scoretext.text = score.ToString();
         
 
-        if (score == 20)
+        if (score == 10)
         {
             
             scene.LoadScene();
 
+        }
+        else if(score == 20)
+        {
+            scene.LoadScene();
         }
     }
 
@@ -96,12 +100,15 @@ public class UIManager : MonoBehaviour
         
         score++;
         scoretext.text = score.ToString();
-        if(score == 10)
+        if(score == 15)
         {
             Bscene.LoadScene();
 
         }
-        
+        else if(score == 25)
+        {
+            Bscene.LoadScene();
+        }
         
     }
 
