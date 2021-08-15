@@ -24,12 +24,7 @@ public class UIManager : MonoBehaviour
     public Text bestScoreText;
     public Text pauseScore;
 
-    //Face detect
-    //public string code;
-    //public InputField inputField;
-    //public Text popup;
 
-    //public Box box;
     public Fryerz fry;
     public float speed;
     //pauseGame
@@ -89,7 +84,7 @@ public class UIManager : MonoBehaviour
             scene.LoadScene();
 
         }
-        else if(score == 20)
+        else if(score == 25)
         {
             scene.LoadScene();
         }
@@ -105,7 +100,7 @@ public class UIManager : MonoBehaviour
             Bscene.LoadScene();
 
         }
-        else if(score == 25)
+        else if(score == 30)
         {
             Bscene.LoadScene();
         }
@@ -139,6 +134,12 @@ public class UIManager : MonoBehaviour
         score = 0;
         int level = Application.loadedLevel;
         Application.LoadLevel(level);
+    }
+
+    public void restart()
+    {
+        score = 0;
+        Bscene.LoadScene();
     }
 
     void update()
