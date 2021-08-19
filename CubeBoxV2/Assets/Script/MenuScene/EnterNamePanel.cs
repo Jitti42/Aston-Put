@@ -9,16 +9,16 @@ public class EnterNamePanel : MonoBehaviour
     public GameObject namePanel;
     public InputField inputField;
     public string character;
-    public GameObject gameover;
-    public Text nameTag;
+    //public GameObject gameover;
+    //public Text nameTag;
 
 
     public void close()
     {
         namePanel.SetActive(false);
-        gameover.SetActive(true);
+        //gameover.SetActive(true);
         character = inputField.text;
-        nameTag.text = character.ToString();
+        //nameTag.text = character.ToString();
         Debug.Log(character);
         
     }

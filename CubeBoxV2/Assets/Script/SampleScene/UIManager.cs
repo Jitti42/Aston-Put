@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject iconscore;
     public SampleScene scene;
     public BonusScene Bscene;
-    public GameObject namePanel;
+    //public GameObject namePanel;
     //HUD
     public Text scoretext;
     static int score = 0;
@@ -119,9 +119,9 @@ public class UIManager : MonoBehaviour
     {
         pause();
         hudPanel.SetActive(false);
-        //resultPanel.SetActive(true);
-        pauseMenuUI.SetActive(false);
-        namePanel.SetActive(true);
+        resultPanel.SetActive(true);
+        pauseMenuUI.SetActive(true);
+        //namePanel.SetActive(true);
         currentScoreText.text = score.ToString();
 
         int bestScore = PlayerPrefs.GetInt("BestScore");

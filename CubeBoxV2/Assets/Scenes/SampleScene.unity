@@ -256,7 +256,6 @@ MonoBehaviour:
   iconscore: {fileID: 1857285894}
   scene: {fileID: 727297666}
   Bscene: {fileID: 0}
-  namePanel: {fileID: 1626783196}
   scoretext: {fileID: 1414902630}
   currentScoreText: {fileID: 812827709}
   bestScoreText: {fileID: 2052423627}
@@ -2271,7 +2270,7 @@ MonoBehaviour:
   die: {fileID: 8300000, guid: c357fbd2b5b47e04b81ed4e3e71429a1, type: 3}
   _mixerGroupMicrophone: {fileID: -6132539224697382099, guid: fbc1f434472305e4a9af519baabe1b49, type: 2}
   _mixerGroupMaster: {fileID: 24300002, guid: fbc1f434472305e4a9af519baabe1b49, type: 2}
-  sentivity: 50
+  sentivity: 100
   loudness: 0
 --- !u!58 &1388007777
 CircleCollider2D:
@@ -2676,8 +2675,6 @@ MonoBehaviour:
   namePanel: {fileID: 1626783196}
   inputField: {fileID: 838972112}
   character: 
-  gameover: {fileID: 1361959190}
-  nameTag: {fileID: 753644188}
 --- !u!114 &1626783199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2957,7 +2954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1893087904
 RectTransform:
   m_ObjectHideFlags: 0

@@ -61,7 +61,7 @@ public class Cirby : MonoBehaviour
 
            
         loudness = GetAveragedVolume() * sentivity;
-        if(loudness > 0.1 )
+        if(loudness > 2.5 )
         {
             
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 2);
