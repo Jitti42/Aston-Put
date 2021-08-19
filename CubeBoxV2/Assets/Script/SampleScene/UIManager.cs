@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject iconscore;
     public SampleScene scene;
     public BonusScene Bscene;
+    public GameObject namePanel;
     //HUD
     public Text scoretext;
     static int score = 0;
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
     public Text currentScoreText;
     public Text bestScoreText;
     public Text pauseScore;
+    //public Text Nametag;
 
 
     public Fryerz fry;
@@ -115,10 +117,11 @@ public class UIManager : MonoBehaviour
 
     public void ShowResult()
     {
-        
+        pause();
         hudPanel.SetActive(false);
-        resultPanel.SetActive(true);
+        //resultPanel.SetActive(true);
         pauseMenuUI.SetActive(false);
+        namePanel.SetActive(true);
         currentScoreText.text = score.ToString();
 
         int bestScore = PlayerPrefs.GetInt("BestScore");
@@ -131,6 +134,7 @@ public class UIManager : MonoBehaviour
     }
     public void OnReplayClick()
     {
+        Resume();
         score = 0;
         int level = Application.loadedLevel;
         Application.LoadLevel(level);

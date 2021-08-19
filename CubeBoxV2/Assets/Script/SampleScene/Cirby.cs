@@ -19,6 +19,7 @@ public class Cirby : MonoBehaviour
     
     public AudioClip die;
     AudioSource _audio;
+    public AudioMixerGroup _mixerGroupMicrophone, _mixerGroupMaster;
     public float sentivity = 100;
     public float loudness = 0;
     
@@ -30,13 +31,17 @@ public class Cirby : MonoBehaviour
         audioSource = GetComponent <AudioSource>();
         uiManager.start();
         _audio = GetComponent<AudioSource>();
+        _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
         _audio.clip = Microphone.Start(null, true, 10, 44100);
         _audio.loop = true;
         _audio.mute = false;
-        while (!(Microphone.GetPosition(null) > 0)) { }
+        while (!(Microphone.GetPosition(null) > 0))
+        {
 
+            
+
+        }
         _audio.Play();
-
         died = false; 
     }
 
@@ -44,6 +49,7 @@ public class Cirby : MonoBehaviour
     {
         if (died)
             return;
+        
         audioSource.PlayOneShot(coin);
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 2);
         uiManager.IncreaseScore();
@@ -53,25 +59,17 @@ public class Cirby : MonoBehaviour
     void Update()
     {
 
-        //bool keyDown = Input.GetKeyDown(KeyCode.Space);
-
-        //bool mouseDown = Input.GetMouseButtonDown(0);
+           
         loudness = GetAveragedVolume() * sentivity;
         if(loudness > 0.1 )
         {
-            //rigidbody2D.velocity = velocity;
-            //animator.SetTrigger("IsFlap");
+            
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 2);
             animator.SetTrigger("IsFlap");
         }
-
-        /*if (usemicrophone && false == died)
-        {
-            rigidbody2D.velocity = velocity;
-            animator.SetTrigger("IsFlap");
-            
-        }*/
        
+
+        
     }
 
     float GetAveragedVolume()
@@ -89,6 +87,7 @@ public class Cirby : MonoBehaviour
     public void OnCollisionEnter2D (Collision2D c)
     {
         died = true;
+       
         audioSource.PlayOneShot(die);
         Invoke ("Ondied", 0);
         

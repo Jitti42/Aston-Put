@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bonus : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
 
     private Animator animator;
     private Rigidbody2D rigidbody2D;
@@ -13,7 +13,7 @@ public class Bonus : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip coin;
 
-    //public GameObject res;
+    
 
     public scoremanage Scores;
 
@@ -23,7 +23,7 @@ public class Bonus : MonoBehaviour
     public UIManager uiManager;
 
 
-    //public void click;
+    
     void Start()
     {
 
@@ -43,24 +43,7 @@ public class Bonus : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        //Vector2 position = transform.position;
-        //bool mouseDown = Input.GetMouseButtonDown(0);
-        //n -= Time.deltaTime;
-
-        /*if (position.x < left)
-        {
-            //rigidbody2D.velocity = velocity;
-
-            Destroy(gameObject);
-            return;
-        }
-        transform.Translate(-speed * Time.deltaTime, 0, 0);*/
-       
-
-
-    }
+   
 
 
 
